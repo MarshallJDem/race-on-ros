@@ -4,6 +4,7 @@
 import rospy
 from geometry_msgs.msg import Pose
 from raceon.msg import AckermannDrive
+from math import exp
 
 class Controller():
     
@@ -38,13 +39,13 @@ class Controller():
         
     # TODO: Implement PID
     def pid(self, error):
-        if abs(error) > 20:
-            return error * self.kp * 1
-        if abs(error) > 30:
-            return error * self.kp * 10
-        if abs(error) > 40:
-            return error * self.kp * 20
-        return error * self.kp
+        #if abs(error) > 20:
+            #return error * self.kp * 1
+        #if abs(error) > 30:
+            #return error * self.kp * 10
+        #if abs(error) > 40:
+            #return error * self.kp * 20
+        return error * exp(0.2 * error) * self.kp
 
     def control_servo(self, error):
         correction = self.pid(error)
