@@ -41,11 +41,11 @@ class Controller():
     def pid(self, error):
         #if abs(error) > 20:
             #return error * self.kp * 1
-        #if abs(error) > 30:
-            #return error * self.kp * 10
+        if abs(error) > 30:
+            return error * exp(0.03 * abs(error)) * self.kp;
         #if abs(error) > 40:
             #return error * self.kp * 20
-        return error * exp(0.03 * abs(error)) * self.kp
+        return error * self.kp * 1;
 
     def control_servo(self, error):
         correction = self.pid(error)
