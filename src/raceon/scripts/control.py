@@ -45,7 +45,7 @@ class Controller():
             #return error * self.kp * 10
         #if abs(error) > 40:
             #return error * self.kp * 20
-        return error * exp(0.02 * abs(error)) * self.kp
+        return error * exp(0.03 * abs(error)) * self.kp
 
     def control_servo(self, error):
         correction = self.pid(error)
