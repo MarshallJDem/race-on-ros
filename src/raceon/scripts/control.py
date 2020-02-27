@@ -41,7 +41,7 @@ class Controller():
     def pid(self, error):
         #if abs(error) > 20:
             #return error * self.kp * 1
-        if abs(error) > 30:
+        if abs(error) > 20:
             return error * exp(0.03 * abs(error)) * self.kp;
         #if abs(error) > 40:
             #return error * self.kp * 20
