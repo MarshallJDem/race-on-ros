@@ -42,7 +42,7 @@ class Controller():
         #if abs(error) > 20:
             #return error * self.kp * 1
         #if abs(error) > 20:
-        return (0.2) * error * exp(0.076 * abs(error)) * self.kp;
+        return (1.0/20.0) * error * exp(0.115 * abs(error)) * self.kp;
         #if abs(error) > 40:
             #return error * self.kp * 20
         #return error * self.kp * 1;
