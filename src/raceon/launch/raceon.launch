@@ -1,5 +1,5 @@
 <launch>
-    <arg name="speed" default="0"/>
+    <arg name="speed" default="200"/>
     
     <group ns="raceon">
         <param name="topic_name_camera_image" value="camera/image" />
@@ -18,7 +18,7 @@
 
         <node pkg="raceon" name="pos_estimation" type="pos_estimation.py" output="log">
             <param name="~use_compressed_image" value="true" />
-            <param name="~scan_line" value="150" />
+            <param name="~scan_line" value="100" />
             <param name="~peak_threshold" value="170" />
             <param name="~track_width" value="500" />
             <param name="~camera_center" value="320" />
