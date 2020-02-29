@@ -6,7 +6,7 @@
 import rospy
 from sensor_msgs.msg import Image, CompressedImage
 from geometry_msgs.msg import Pose
-#from raceon.msg import TrackPosition
+from raceon.msg import TrackPosition
 from std_msgs.msg import Int32
 
 # Dependencies for estimation
@@ -53,7 +53,7 @@ class PosEstimator():
             self.sub_camera = rospy.Subscriber(self.topic_name_camera_image, Image, self.image_callback)
             
         self.pub_pos_err = rospy.Publisher(self.topic_name_pos_err, Pose, queue_size=10)
-        #self.pub_pos_track = rospy.Publisher(self.topic_name_pos_track, TrackPosition, queue_size=10)
+        self.pub_pos_track = rospy.Publisher(self.topic_name_pos_track, TrackPosition, queue_size=10)
         self.pub_line_left = rospy.Publisher("line/left", Int32, queue_size=10)
         self.pub_line_right = rospy.Publisher("line/right", Int32, queue_size=10)
         self.pub_middle_error = rospy.Publisher("middle/error", Int32, queue_size=10)
@@ -126,10 +126,10 @@ class PosEstimator():
             line_right = peaks_right.min()
         
         # Log track position
-        #track_msg = TrackPosition()
-       # track_msg.left = 0 if line_left == None else int(line_left)
-       # track_msg.right = 0 if line_right == None else int(line_right)
-       # self.pub_pos_track.publish(track_msg)
+        track_msg = TrackPosition()
+        track_msg.left = 0 if line_left == None else int(line_left)
+        track_msg.right = 0 if line_right == None else int(line_right)
+        self.pub_pos_track.publish(track_msg)
         
         #self.pub_line_left.publish(left_pos)
         #self.pub_line_right.publish(right_pos)
